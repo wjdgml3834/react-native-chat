@@ -1,5 +1,5 @@
 import React from "react";
-import styled from " styled-components/native";
+import styled from "@emotion/native";
 
 const Container = styled.View`
   flex: 1;
@@ -11,7 +11,7 @@ const Container = styled.View`
 
 const StyledText = styled.Text`
   font-size: 30px;
-  color: "#111111";
+  color: #111111;
 `;
 
 const Signup = () => {
