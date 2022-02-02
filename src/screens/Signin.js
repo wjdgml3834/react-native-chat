@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ThemeContext } from "styled-components/native";
 import styled from "styled-components/native";
-import { Button, Image } from "../components";
+import { Button, Image, Input } from "../components";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 // 파이어베이스 로고 스토리지 주소
@@ -11,10 +11,25 @@ const LOGO =
 const Signin = ({ navigation }) => {
   const insets = useSafeAreaInsets();
   const theme = useContext(ThemeContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   return (
     <Container insets={insets}>
       <Image url={LOGO} />
-      <StyledText>Sign in</StyledText>
+      <Input
+        label="Email"
+        placeholder="Email"
+        returnKeyType="next"
+        value={email}
+        onChangeText={setEmail}
+      />
+      <Input
+        label="Password"
+        placeholder="Password"
+        returnKeyType="done"
+        value={password}
+        onChangeText={setPassword}
+      />
       <Button title="Sign up" onPress={() => console.log("sign in")} />
       <Button
         title="or sign up"
@@ -34,11 +49,6 @@ const Container = styled.View`
   padding: 0 20px;
   padding-top: ${({ insets: { top } }) => top}px;
   padding-bottom: ${({ insets: { bottom } }) => bottom}px;
-`;
-
-const StyledText = styled.Text`
-  font-size: 30px;
-  color: #111111;
 `;
 
 export default Signin;

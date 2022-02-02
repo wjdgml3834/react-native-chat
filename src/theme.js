@@ -4,7 +4,8 @@ const Colors = {
   white: "#ffffff",
   black: "#111111",
   main: "#3679fe",
-  grey: "#d5d5d5",
+  lightgrey: "#d5d5d5",
+  deepgrey: "#a6a6a6",
 };
 
 export const theme = {
@@ -18,5 +19,11 @@ export const theme = {
 
   // 이미지
 
-  imgBackground: Colors.grey,
+  imgBackground: Colors.lightgrey,
+
+  //Input
+  inputBackground: Colors.white,
+  inputLabel: Colors.deepgrey,
+  inputPlaceholder: Colors.deepgrey,
+  inputBorder: Colors.deepgrey,
 };
