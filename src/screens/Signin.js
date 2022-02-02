@@ -33,6 +33,7 @@ const Signin = ({ navigation }) => {
         returnKeyType="done"
         value={password}
         onChangeText={setPassword}
+        isPassword={true}
       />
       <Button title="Sign up" onPress={() => console.log("sign in")} />
       <Button
