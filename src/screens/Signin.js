@@ -15,6 +15,10 @@ const Signin = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const refPassword = useRef(null);
 
+  const _handleSigninBtnPress = () => {
+    console.log("signin");
+  };
+
   return (
     <Container insets={insets}>
       <Image url={LOGO} />
@@ -34,8 +38,9 @@ const Signin = ({ navigation }) => {
         value={password}
         onChangeText={setPassword}
         isPassword={true}
+        onSubmitEditing={_handleSigninBtnPress}
       />
-      <Button title="Sign up" onPress={() => console.log("sign in")} />
+      <Button title="Sign in" onPress={_handleSigninBtnPress} />
       <Button
         title="or sign up"
         onPress={() => navigation.navigate("Signup")}
