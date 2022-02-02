@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { ThemeContext } from "styled-components/native";
 import styled from "styled-components/native";
 import { Button, Image, Input } from "../components";
@@ -13,6 +13,8 @@ const Signin = ({ navigation }) => {
   const theme = useContext(ThemeContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const refPassword = useRef(null);
+
   return (
     <Container insets={insets}>
       <Image url={LOGO} />
@@ -22,8 +24,10 @@ const Signin = ({ navigation }) => {
         returnKeyType="next"
         value={email}
         onChangeText={setEmail}
+        onSubmitEditing={() => refPassword.current.focus()}
       />
       <Input
+        ref={refPassword}
         label="Password"
         placeholder="Password"
         returnKeyType="done"
