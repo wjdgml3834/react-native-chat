@@ -21,7 +21,7 @@ const Signup = () => {
   };
 
   return (
-    <KeyboardAwareScrollView>
+    <KeyboardAwareScrollView extraScrollHeight={20}>
       <Container insets={insets}>
         <Image />
         <Input
