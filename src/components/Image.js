@@ -21,6 +21,10 @@ const Image = ({ url }) => {
   );
 };
 
+Image.defaultProps = {
+  url: "https://firebasestorage.googleapis.com/v0/b/rn-chat-e7ab8.appspot.com/o/character.jpeg?alt=media",
+};
+
 Image.propTypes = {
   url: PropTypes.string,
 };
