@@ -72,9 +72,7 @@ const Container = styled.View`
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.background};
-  padding: 0 20px;
-  padding-top: ${({ insets: { top } }) => top}px;
-  padding-bottom: ${({ insets: { bottom } }) => bottom}px;
+  padding: 50px 20px;
 `;
 
 export default Signup;
