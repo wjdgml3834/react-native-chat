@@ -20,6 +20,8 @@ export const theme = {
   // 이미지
 
   imgBackground: Colors.lightgrey,
+  imgBtnBackground: Colors.deepgrey,
+  imgBtnIcon: Colors.white,
 
   //Input
   inputBackground: Colors.white,
