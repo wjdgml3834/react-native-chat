@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import styled from "styled-components/native";
 import { Button, Image, Input } from "../components";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const Signup = () => {
   const insets = useSafeAreaInsets();
@@ -20,47 +21,49 @@ const Signup = () => {
   };
 
   return (
-    <Container insets={insets}>
-      <Image />
-      <Input
-        label="Name"
-        placeholder="Name"
-        returnKeyType="next"
-        value={name}
-        onChangeText={setName}
-        onSubmitEditing={() => refEmail.current.focus()}
-      />
-      <Input
-        ref={refEmail}
-        label="Email"
-        placeholder="Email"
-        returnKeyType="next"
-        value={email}
-        onChangeText={setEmail}
-        onSubmitEditing={() => refPassword.current.focus()}
-      />
-      <Input
-        ref={refPassword}
-        label="Password"
-        placeholder="Password"
-        returnKeyType="next"
-        value={password}
-        onChangeText={setPassword}
-        isPassword={true}
-        onSubmitEditing={() => refPasswordConfirm.current.focus()}
-      />
-      <Input
-        ref={refPasswordConfirm}
-        label="Password Confirm"
-        placeholder="Password"
-        returnKeyType="done"
-        value={passwordConfirm}
-        onChangeText={setPasswordConfirm}
-        isPassword={true}
-        onSubmitEditing={_handleSignupBtnPress}
-      />
-      <Button title="Sign in" onPress={_handleSignupBtnPress} />
-    </Container>
+    <KeyboardAwareScrollView>
+      <Container insets={insets}>
+        <Image />
+        <Input
+          label="Name"
+          placeholder="Name"
+          returnKeyType="next"
+          value={name}
+          onChangeText={setName}
+          onSubmitEditing={() => refEmail.current.focus()}
+        />
+        <Input
+          ref={refEmail}
+          label="Email"
+          placeholder="Email"
+          returnKeyType="next"
+          value={email}
+          onChangeText={setEmail}
+          onSubmitEditing={() => refPassword.current.focus()}
+        />
+        <Input
+          ref={refPassword}
+          label="Password"
+          placeholder="Password"
+          returnKeyType="next"
+          value={password}
+          onChangeText={setPassword}
+          isPassword={true}
+          onSubmitEditing={() => refPasswordConfirm.current.focus()}
+        />
+        <Input
+          ref={refPasswordConfirm}
+          label="Password Confirm"
+          placeholder="Password"
+          returnKeyType="done"
+          value={passwordConfirm}
+          onChangeText={setPasswordConfirm}
+          isPassword={true}
+          onSubmitEditing={_handleSignupBtnPress}
+        />
+        <Button title="Sign in" onPress={_handleSignupBtnPress} />
+      </Container>
+    </KeyboardAwareScrollView>
   );
 };
 
