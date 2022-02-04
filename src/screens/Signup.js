@@ -1,12 +1,9 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components/native";
 import { Button, Image, Input } from "../components";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const Signup = () => {
-  const insets = useSafeAreaInsets();
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +19,7 @@ const Signup = () => {
 
   return (
     <KeyboardAwareScrollView extraScrollHeight={20}>
-      <Container insets={insets}>
+      <Container>
         <Image />
         <Input
           label="Name"
