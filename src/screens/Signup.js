@@ -2,8 +2,13 @@ import React, { useState, useRef } from "react";
 import styled from "styled-components/native";
 import { Button, Image, Input } from "../components";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import * as ImagePicker from "expo-image-picker";
+
+const DEFAULT_PHOTO =
+  "https://firebasestorage.googleapis.com/v0/b/rn-chat-e7ab8.appspot.com/o/character.jpeg?alt=media";
 
 const Signup = () => {
+  const [photo, setPhoto] = useState(DEFAULT_PHOTO);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,7 +25,7 @@ const Signup = () => {
   return (
     <KeyboardAwareScrollView extraScrollHeight={20}>
       <Container>
-        <Image showButton={true} />
+        <Image showButton={true} url={photo} onChangePhoto={setPhoto} />
         <Input
           label="Name"
           placeholder="Name"
