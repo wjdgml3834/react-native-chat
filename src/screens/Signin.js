@@ -1,7 +1,7 @@
 import React, { useContext, useState, useRef } from "react";
 import { ThemeContext } from "styled-components/native";
 import styled from "styled-components/native";
-import { Button, Image, Input } from "../components";
+import { Button, Image, Input, ErrorMessage } from "../components";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { signin } from "../firebase";
@@ -17,11 +17,15 @@ const Signin = ({ navigation }) => {
   const theme = useContext(ThemeContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const refPassword = useRef(null);
 
   const _handleEmailChange = (email) => {
     const changedEmail = removeWhitespace(email);
     setEmail(changedEmail);
+    setErrorMessage(
+      validateEmail(changedEmail) ? "" : "please verify your email"
+    );
   };
   const _handlePasswordChange = (password) => {
     setPassword(removeWhitespace(password));
@@ -61,6 +65,7 @@ const Signin = ({ navigation }) => {
           isPassword={true}
           onSubmitEditing={_handleSigninBtnPress}
         />
+        <ErrorMessage message={errorMessage} />
         <Button title="Sign in" onPress={_handleSigninBtnPress} />
         <Button
           title="or sign up"

@@ -6,11 +6,13 @@ const Colors = {
   main: "#3679fe",
   lightgrey: "#d5d5d5",
   deepgrey: "#a6a6a6",
+  red: "#e84118",
 };
 
 export const theme = {
   background: Colors.white,
   text: Colors.black,
+  errorText: Colors.red,
 
   // 버튼
   btnBackground: Colors.main,
