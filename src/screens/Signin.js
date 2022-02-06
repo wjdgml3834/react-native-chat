@@ -7,7 +7,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { signin } from "../firebase";
 import { Alert } from "react-native";
 import { validateEmail, removeWhitespace } from "../utils";
-import { UserContext } from "../contexts";
+import { UserContext, ProgressContext } from "../contexts";
 
 // 파이어베이스 로고 스토리지 주소
 const LOGO =
@@ -17,6 +17,7 @@ const Signin = ({ navigation }) => {
   const insets = useSafeAreaInsets();
   const theme = useContext(ThemeContext);
   const { setUser } = useContext(UserContext);
+  const { spinner } = useContext(ProgressContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -41,10 +42,13 @@ const Signin = ({ navigation }) => {
 
   const _handleSigninBtnPress = async () => {
     try {
+      spinner.start();
       const user = await signin({ email, password });
       setUser(user);
     } catch (e) {
       Alert.alert("Signin Error", e.messege);
+    } finally {
+      spinner.stop();
     }
   };
 

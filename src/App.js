@@ -5,15 +5,20 @@ import { ThemeProvider } from "styled-components";
 // theme 불러오기 위해서
 import { theme } from "./theme";
 import Navigation from "./navigations";
-import { UserProvider } from "./contexts";
+import { UserProvider, ProgressProvider } from "./contexts";
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <UserProvider>
-        <StatusBar backgroundColor={theme.background} barStyle="dark-content" />
-        <Navigation />
-      </UserProvider>
+      <ProgressProvider>
+        <UserProvider>
+          <StatusBar
+            backgroundColor={theme.background}
+            barStyle="dark-content"
+          />
+          <Navigation />
+        </UserProvider>
+      </ProgressProvider>
     </ThemeProvider>
   );
 };

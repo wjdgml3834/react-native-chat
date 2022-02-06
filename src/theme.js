@@ -30,4 +30,8 @@ export const theme = {
   inputLabel: Colors.deepgrey,
   inputPlaceholder: Colors.deepgrey,
   inputBorder: Colors.deepgrey,
+
+  // 스피너
+  spinnerBackground: Colors.black,
+  spinnerIndicator: Colors.white,
 };

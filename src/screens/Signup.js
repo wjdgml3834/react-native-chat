@@ -5,13 +5,15 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { signup } from "../firebase";
 import { Alert } from "react-native";
 import { validateEmail, removeWhitespace } from "../utils";
-import { UserContext } from "../contexts";
+import { UserContext, ProgressContext } from "../contexts";
 
 const DEFAULT_PHOTO =
   "https://firebasestorage.googleapis.com/v0/b/rn-chat-e7ab8.appspot.com/o/character.jpeg?alt=media";
 
 const Signup = ({ navigation }) => {
   const { setUser } = useContext(UserContext);
+  const { spinner } = useContext(ProgressContext);
+
   const [photo, setPhoto] = useState(DEFAULT_PHOTO);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -54,10 +56,13 @@ const Signup = ({ navigation }) => {
 
   const _handleSignupBtnPress = async () => {
     try {
+      spinner.start();
       const user = await signup({ name, email, password, photo });
       setUser(user);
     } catch (e) {
       Alert.alert("Signup Erorr", e.message);
+    } finally {
+      spinner.stop();
     }
   };
 
