@@ -4,6 +4,9 @@ import styled from "styled-components/native";
 import { Button, Image, Input } from "../components";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { signin } from "../firebase";
+import { Alert } from "react-native";
+import { validateEmail, removeWhitespace } from "../utils";
 
 // 파이어베이스 로고 스토리지 주소
 const LOGO =
@@ -16,8 +19,21 @@ const Signin = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const refPassword = useRef(null);
 
-  const _handleSigninBtnPress = () => {
-    console.log("signin");
+  const _handleEmailChange = (email) => {
+    const changedEmail = removeWhitespace(email);
+    setEmail(changedEmail);
+  };
+  const _handlePasswordChange = (password) => {
+    setPassword(removeWhitespace(password));
+  };
+
+  const _handleSigninBtnPress = async () => {
+    try {
+      const user = await signin({ email, password });
+      navigation.navigate("Profile", { user });
+    } catch (e) {
+      Alert.alert("Signin Error", e.messege);
+    }
   };
 
   return (
@@ -32,7 +48,7 @@ const Signin = ({ navigation }) => {
           placeholder="Email"
           returnKeyType="next"
           value={email}
-          onChangeText={setEmail}
+          onChangeText={_handleEmailChange}
           onSubmitEditing={() => refPassword.current.focus()}
         />
         <Input
@@ -41,7 +57,7 @@ const Signin = ({ navigation }) => {
           placeholder="Password"
           returnKeyType="done"
           value={password}
-          onChangeText={setPassword}
+          onChangeText={_handlePasswordChange}
           isPassword={true}
           onSubmitEditing={_handleSigninBtnPress}
         />

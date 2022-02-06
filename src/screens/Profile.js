@@ -7,7 +7,8 @@ const Container = styled.View`
   background-color: ${({ theme }) => theme.background};
 `;
 
-const Profile = ({ navigation }) => {
+const Profile = ({ navigation, route }) => {
+  console.log(route.params);
   return (
     <Container>
       <Button title="signout" onPress={() => navigation.navigate("Signin")} />
