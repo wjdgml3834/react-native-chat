@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import { ThemeContext } from "styled-components/native";
 import styled from "styled-components/native";
 import { Button, Image, Input, ErrorMessage } from "../components";
@@ -18,7 +18,12 @@ const Signin = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [disabled, setDisabled] = useState(true);
   const refPassword = useRef(null);
+
+  useEffect(() => {
+    setDisabled(!(email && password && !errorMessage));
+  }, [email, password, errorMessage]);
 
   const _handleEmailChange = (email) => {
     const changedEmail = removeWhitespace(email);
@@ -66,7 +71,11 @@ const Signin = ({ navigation }) => {
           onSubmitEditing={_handleSigninBtnPress}
         />
         <ErrorMessage message={errorMessage} />
-        <Button title="Sign in" onPress={_handleSigninBtnPress} />
+        <Button
+          title="Sign in"
+          onPress={_handleSigninBtnPress}
+          disabled={disabled}
+        />
         <Button
           title="or sign up"
           onPress={() => navigation.navigate("Signup")}
