@@ -34,4 +34,8 @@ export const theme = {
   // 스피너
   spinnerBackground: Colors.black,
   spinnerIndicator: Colors.white,
+
+  // 하단 탭
+  tabBtnActive: Colors.main,
+  tabBtnInActive: Colors.deepgrey,
 };
