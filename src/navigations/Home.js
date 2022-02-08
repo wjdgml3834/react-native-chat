@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { ThemeContext } from "styled-components/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { ChannelList, Profile } from "../screens";
 import { MaterialIcons } from "@expo/vector-icons";
-import { theme } from "../theme";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 
 const TabIcon = ({ name, focused }) => {
+  const theme = useContext(ThemeContext);
   return (
     <MaterialIcons
       name={name}
@@ -17,7 +18,13 @@ const TabIcon = ({ name, focused }) => {
 
 const Tab = createBottomTabNavigator();
 
-const Home = () => {
+const Home = ({ navigation, route }) => {
+  useEffect(() => {
+    const screenName = getFocusedRouteNameFromRoute(route) || "List";
+    navigation.setOptions({
+      headerTitle: screenName,
+    });
+  });
   return (
     <Tab.Navigator>
       <Tab.Screen
